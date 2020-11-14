@@ -50,3 +50,18 @@ const requestHandler = (req, res) => {
 };
 
 module.exports = requestHandler;
+
+// Can also use the methods below
+/*
+module.exports = {
+    handler: requesthandler,
+    sometext: 'Some text'
+};
+ */
+
+// or
+
+/*
+exports.handler = requesthandler;
+exports.someText = 'Some text';
+ */
