@@ -20,8 +20,22 @@ const server = http.createServer((req, res) => {
     }
 
     if (url === '/message' && method === 'post') {
-        // Create file message.txt and write 'Dummy' to it
-        fs.writeFileSync('message.txt', 'Dummy');
+        // A buffer is a construct that allows you to hold multiple chunks and work with them
+        const body = [];
+        // listen to data event
+        req.on('data', (chunk) => {
+            console.log(chunk);
+            body.push(chunk);
+        });
+
+        req.on('end', () => {
+            // create new buffer and add chunks to it
+            const parsedBody = Buffer.concat(body).toString();
+            console.log(parsedBody);
+            const message = parsedBody.split('=')[1];
+            // Create file message.txt and write 'Dummy' to it
+            fs.writeFileSync('message.txt', message);
+        })
 
         // set status code for successful redirect
         res.statusCode = 302;
