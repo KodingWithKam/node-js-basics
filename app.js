@@ -34,13 +34,13 @@ const server = http.createServer((req, res) => {
             console.log(parsedBody);
             const message = parsedBody.split('=')[1];
             // Create file message.txt and write 'Dummy' to it
-            fs.writeFileSync('message.txt', message);
+            fs.writeFile('message.txt', message, err => {
+                // set status code for successful redirect
+                res.statusCode = 302;
+                res.setHeader('Location', '/');
+                return res.end();
+            });
         })
-
-        // set status code for successful redirect
-        res.statusCode = 302;
-        res.setHeader('Location', '/');
-        return res.end();
     }
 
     // Send response (set header)
