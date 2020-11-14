@@ -1,4 +1,5 @@
 const http = require('http');
+const fs = require('fs');
 
 // Create node server
 const server = http.createServer((req, res) => {
@@ -6,6 +7,7 @@ const server = http.createServer((req, res) => {
     // console.log(req.url, req.method, req.headers);
 
     const url = req.url;
+    const method = req.method;
 
     if (url === '/') {
         res.write(`
@@ -14,6 +16,16 @@ const server = http.createServer((req, res) => {
                 <body><form action="/message" method="post"><input type="text" name="message"><button type="submit">Send</button></form></body>
             </html>
         `);
+        return res.end();
+    }
+
+    if (url === '/message' && method === 'post') {
+        // Create file message.txt and write 'Dummy' to it
+        fs.writeFileSync('message.txt', 'Dummy');
+
+        // set status code for successful redirect
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
         return res.end();
     }
 
