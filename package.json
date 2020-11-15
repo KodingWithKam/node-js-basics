@@ -1,0 +1,20 @@
+{
+  "name": "js-basics",
+  "version": "1.0.0",
+  "description": "Node JS Basics",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koding-with-kam/node-js-basics.git"
+  },
+  "author": "Kam hayes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koding-with-kam/node-js-basics/issues"
+  },
+  "homepage": "https://github.com/koding-with-kam/node-js-basics#readme"
+}
